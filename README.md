@@ -140,3 +140,9 @@ codepoint = 0x10000 + (H − 0xD800) × 0x400 + (L − 0xDC00)
           = 0x10000 + 0xD000 + 0x11E
           = 0x1D11E
 ```
+
+## JSON 数组
+
+`array = %x5B ws [ value *( ws %x2C ws value ) ] ws %x5D`
+
+当中，`%x5B` 是左中括号 `[`，`%x2C` 是逗号 `,`，`%x5D` 是右中括号 `]` ，`ws` 是空白字符。
