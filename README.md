@@ -12,6 +12,21 @@ cd build
 meson compile
 ```
 
+## Code Style
+
+base on google
+
+`clang-format --dump-config --style=google`
+
+fix
+
+```
+AlignConsecutiveMacros: AcrossEmptyLines
+AllowShortBlocksOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: true
+ColumnLimit:     120
+```
+
 ## Json
 
 ```json
@@ -55,6 +70,7 @@ null  = "null"
 false = "false"
 true  = "true"
 ```
+
 ## JSON 数字语法
 
 ```
@@ -62,4 +78,24 @@ number = [ "-" ] int [ frac ] [ exp ]
 int = "0" / digit1-9 *digit
 frac = "." 1*digit
 exp = ("e" / "E") ["-" / "+"] 1*digit
+```
+
+## JSON 字符串语法
+
+```
+string = quotation-mark *char quotation-mark
+char = unescaped /
+   escape (
+       %x22 /          ; "    quotation mark  U+0022
+       %x5C /          ; \    reverse solidus U+005C
+       %x2F /          ; /    solidus         U+002F
+       %x62 /          ; b    backspace       U+0008
+       %x66 /          ; f    form feed       U+000C
+       %x6E /          ; n    line feed       U+000A
+       %x72 /          ; r    carriage return U+000D
+       %x74 /          ; t    tab             U+0009
+       %x75 4HEXDIG )  ; uXXXX                U+XXXX
+escape = %x5C          ; \
+quotation-mark = %x22  ; "
+unescaped = %x20-21 / %x23-5B / %x5D-10FFFF
 ```
