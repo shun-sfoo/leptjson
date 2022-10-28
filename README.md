@@ -146,3 +146,10 @@ codepoint = 0x10000 + (H − 0xD800) × 0x400 + (L − 0xDC00)
 `array = %x5B ws [ value *( ws %x2C ws value ) ] ws %x5D`
 
 当中，`%x5B` 是左中括号 `[`，`%x2C` 是逗号 `,`，`%x5D` 是右中括号 `]` ，`ws` 是空白字符。
+
+## JSON 对象
+
+```
+member = string ws %x3A ws value
+object = %x7B ws [ member *( ws %x2C ws member ) ] ws %x7D
+```
