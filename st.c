@@ -6,6 +6,8 @@
 #include <string.h>                  /* strcmp() */
 #include <unistd.h>                  /* read() */
 
+#include "caiyun.h"
+
 #define MAXSIZE 1024
 
 int main(void) {
@@ -15,7 +17,7 @@ int main(void) {
   // cat /proc/bus/input/devices found mouse event
   int keys_fd;
   struct input_event t;
-  keys_fd = open("/dev/input/event4", O_RDONLY);
+  keys_fd = open("/dev/input/event2", O_RDONLY);
 
   if (keys_fd <= 0) {
     printf("open /dev/input/event4 error!\n");
@@ -48,6 +50,7 @@ int main(void) {
         if (strcmp(sentence, preview) != 0) {
           strcpy(preview, sentence);
           printf("sentence : %s\n", sentence);
+          fanyi(sentence);
         }
       }
       pclose(fp);
