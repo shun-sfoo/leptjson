@@ -119,6 +119,13 @@ int fanyi(char *sentence) {
     value = lept_get_object_value(&v, 1);
     printf("翻译: %s\n", value->u.s.s);
 
+#if WAYLAND
+#else
+    char dwm[1024];
+    sprintf(dwm, "xsetroot -name \"%s\"", value->u.s.s);
+    system(dwm);
+#endif
+
     free(s.ptr);
     if (res != CURLE_OK) { fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res)); }
   }

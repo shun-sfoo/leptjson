@@ -23,7 +23,11 @@ int main(int argc, char **argv) {
   strcat(authorization, argv[2]);
 
   // need xlicp in wayland use wl-paste
+#if WAYLAND
+  const char *cmd = "wl-paste";
+#else
   const char *cmd = "xclip -o";
+#endif
 
   // cat /proc/bus/input/devices found mouse event
   int keys_fd;
