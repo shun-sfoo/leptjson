@@ -92,9 +92,11 @@ int fanyi(char *sentence) {
   char *postthis;
   caiyun(&postthis, sentence);
 
+  extern char authorization[44];
+
   struct curl_slist *chunk = NULL;
   chunk = curl_slist_append(chunk, "content-type: application/json");
-  chunk = curl_slist_append(chunk, "x-authorization: token ");
+  chunk = curl_slist_append(chunk, authorization);
 
   curl_global_init(CURL_GLOBAL_ALL);
   curl = curl_easy_init();
@@ -115,7 +117,7 @@ int fanyi(char *sentence) {
     lept_parse(&v, s.ptr);
     lept_value *value;
     value = lept_get_object_value(&v, 1);
-    printf("%s\n", value->u.s.s);
+    printf("翻译: %s\n", value->u.s.s);
 
     free(s.ptr);
     if (res != CURLE_OK) { fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res)); }

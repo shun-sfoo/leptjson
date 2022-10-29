@@ -10,17 +10,28 @@
 
 #define MAXSIZE 1024
 
-int main(void) {
+char event[18] = "/dev/input/";
+char authorization[44] = "x-authorization: token ";
+
+int main(int argc, char **argv) {
+  if (argc < 3) {
+    printf("must input event and caiyun token");
+    return -1;
+  }
+
+  strcat(event, argv[1]);
+  strcat(authorization, argv[2]);
+
   // need xlicp in wayland use wl-paste
   const char *cmd = "xclip -o";
 
   // cat /proc/bus/input/devices found mouse event
   int keys_fd;
   struct input_event t;
-  keys_fd = open("/dev/input/event2", O_RDONLY);
+  keys_fd = open(event, O_RDONLY);
 
   if (keys_fd <= 0) {
-    printf("open /dev/input/event4 error!\n");
+    printf("open %s error!\n", event);
     return -1;
   }
 
@@ -49,7 +60,7 @@ int main(void) {
       if (fgets(sentence, MAXSIZE, fp) != NULL) {
         if (strcmp(sentence, preview) != 0) {
           strcpy(preview, sentence);
-          printf("sentence : %s\n", sentence);
+          printf("原句: %s\n", sentence);
           fanyi(sentence);
         }
       }
