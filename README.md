@@ -153,3 +153,15 @@ codepoint = 0x10000 + (H − 0xD800) × 0x400 + (L − 0xDC00)
 member = string ws %x3A ws value
 object = %x7B ws [ member *( ws %x2C ws member ) ] ws %x7D
 ```
+
+## termdict usage
+
+```bash
+# find mouse event
+cat /proc/bus/input/devices
+# test eventN is mouse
+sudo cat /dev/input/event2 |hexdump
+
+# running
+sudo ./termdict event2 xxxxxxxxxxx
+```

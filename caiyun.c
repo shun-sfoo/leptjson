@@ -119,8 +119,7 @@ int fanyi(char *sentence) {
     value = lept_get_object_value(&v, 1);
     printf("翻译: %s\n", value->u.s.s);
 
-#if WAYLAND
-#else
+#if !WAYLAND
     char dwm[1024];
     sprintf(dwm, "xsetroot -name \"%s\"", value->u.s.s);
     system(dwm);

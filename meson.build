@@ -5,4 +5,6 @@ project('leptjson', 'c',
 curl = dependency('libcurl')
 
 executable('prog', 'test.c', 'leptjson.c')
-executable('st', 'st.c', 'leptjson.c', 'caiyun.c', dependencies: curl)
+executable('termdict', 'termdict.c', 'leptjson.c', 'caiyun.c', dependencies: curl)
+executable('mystery', 'mystery.c')
+executable('stairs', 'stairs.c')

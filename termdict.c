@@ -9,6 +9,7 @@
 #include "caiyun.h"
 
 #define MAXSIZE 1024
+#define WAYLAND 0
 
 char event[18] = "/dev/input/";
 char authorization[44] = "x-authorization: token ";
